@@ -15,12 +15,14 @@ const Index = () => {
     address: store.address,
     openingHours: store.hours.map((h) => `${h.day} ${h.time}`),
     makesOffer: categories.flatMap((c) =>
-      c.products.map((p) => ({
-        "@type": "Offer",
-        itemOffered: { "@type": "Product", name: p.name, category: c.name },
-        price: p.price,
-        priceCurrency: "RON",
-      }))
+      c.products.flatMap((p) =>
+        p.variants.map((v) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Product", name: `${p.name} — ${v.brand}`, category: c.name },
+          price: v.price,
+          priceCurrency: "RON",
+        }))
+      )
     ),
   };
 
