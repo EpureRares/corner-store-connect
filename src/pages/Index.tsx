@@ -1,16 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { ProductCatalog } from "@/components/ProductCatalog";
+import { HowToOrder } from "@/components/HowToOrder";
+import { Footer } from "@/components/Footer";
+import { store, categories } from "@/data/catalog";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    name: store.name,
+    telephone: store.phone,
+    email: store.email,
+    address: store.address,
+    openingHours: store.hours.map((h) => `${h.day} ${h.time}`),
+    makesOffer: categories.flatMap((c) =>
+      c.products.map((p) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Product", name: p.name, category: c.name },
+        price: p.price,
+        priceCurrency: "RON",
+      }))
+    ),
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <Header />
+      <main>
+        <Hero />
+        <ProductCatalog />
+        <HowToOrder />
+      </main>
+      <Footer />
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
