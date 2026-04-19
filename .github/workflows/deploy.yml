@@ -25,10 +25,6 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Build
-        env:
-          # Sets Vite base to "/<repo-name>/" so assets resolve on project Pages.
-          # For a user/org root site (<user>.github.io repo), set BASE_PATH to "/" in repo Settings → Secrets/Variables.
-          BASE_PATH: /
         run: npm run build -- --base="${BASE_PATH}"
       - name: Add SPA fallback (404.html)
         run: cp dist/index.html dist/404.html
