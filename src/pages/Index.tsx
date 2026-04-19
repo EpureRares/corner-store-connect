@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { ProductCatalog } from "@/components/ProductCatalog";
 import { HowToOrder } from "@/components/HowToOrder";
 import { Footer } from "@/components/Footer";
+import { GdprNotice } from "@/components/GdprNotice";
 import { store, categories } from "@/data/catalog";
 
 const Index = () => {
@@ -36,6 +37,7 @@ const Index = () => {
         <HowToOrder />
       </main>
       <Footer />
+      <GdprNotice />
     </div>
   );
 };
