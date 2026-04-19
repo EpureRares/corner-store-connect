@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/", // ✅ IMPORTANT (because epurerares.github.io is a user site)
+  base: "/corner-store-connect", 
 
   server: {
     host: "::",
